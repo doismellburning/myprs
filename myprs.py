@@ -11,13 +11,17 @@ def myprs(organisation):
             prs += [pr]
 
     yours = 0
+    lines = []
     for pr in prs:
         r = pr.repository
         line = "%s/%s: #%d: %s @ %s" % (r[0], r[1], pr.number, pr.title, pr.html_url)
         if pr.user == g.user():
             line += " (YOURS!)"
             yours += 1
-        print line
+        lines.append(line)
+
+    lines.sort()
+    print "\n".join(lines)
     print ""
     print "%d open PRs" % len(prs)
     print "%d are yours" % yours
