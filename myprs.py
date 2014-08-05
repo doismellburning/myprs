@@ -28,6 +28,9 @@ def myprs(organisation):
     print ""
     print datetime.datetime.now().isoformat()
 
-if __name__ == "__main__":
+def main():
     import sys
     myprs(sys.argv[1])
+
+if __name__ == "__main__":
+    main()
