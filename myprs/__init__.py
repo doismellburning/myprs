@@ -11,10 +11,12 @@ def myprs(organisation):
             prs += [pr]
 
     yours = 0
+    count = {}
     lines = []
     for pr in prs:
         r = pr.repository
         line = "%s/%s: #%d: %s @ %s (%s)" % (r[0], r[1], pr.number, pr.title, pr.html_url, pr.user)
+        count[pr.user] = count.get(pr.user, 0) + 1
         if pr.user == g.user():
             line += " (YOURS!)"
             yours += 1
@@ -25,6 +27,9 @@ def myprs(organisation):
     print ""
     print "%d open PRs" % len(prs)
     print "%d are yours" % yours
+    print ""
+    for (u, c) in sorted(count.iteritems()):
+        print "%s: %d" % (u, c)
     print ""
     print datetime.datetime.now().isoformat()
 
