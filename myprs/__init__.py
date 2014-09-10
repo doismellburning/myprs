@@ -14,7 +14,7 @@ def myprs(organisation):
     lines = []
     for pr in prs:
         r = pr.repository
-        line = "%s/%s: #%d: %s @ %s" % (r[0], r[1], pr.number, pr.title, pr.html_url)
+        line = "%s/%s: #%d: %s @ %s (%s)" % (r[0], r[1], pr.number, pr.title, pr.html_url, pr.user)
         if pr.user == g.user():
             line += " (YOURS!)"
             yours += 1
